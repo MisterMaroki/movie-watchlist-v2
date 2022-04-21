@@ -1,23 +1,6 @@
 import React, { useState } from 'react';
 
-const Header = () => {
-	const [searchInput, setSearchInput] = useState('');
-
-	function handleSearch(event) {
-		event.preventDefault();
-		setSearchInput(event.target.value);
-
-		fetchInitialSearchResults();
-	}
-
-	const fetchInitialSearchResults = async () => {
-		const res = await fetch(
-			`https://www.omdbapi.com/?apikey=3f3c26a6&s=${searchInput}&type=movie&page=1`
-		);
-		const data = await res.json();
-		console.log(data);
-	};
-
+const Header = ({ handleSearch }) => {
 	return (
 		<nav>
 			<div className="blur"></div>
@@ -41,9 +24,7 @@ const Header = () => {
 					placeholder="Find a film..."
 					onChange={handleSearch}
 				/>
-				<button type="submit" className="search-btn" id="search-btn">
-					Search
-				</button>
+				<button className="search-btn">Search</button>
 			</form>
 		</nav>
 	);
