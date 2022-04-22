@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import Header from './Header';
+import Header from './Components/Header';
+import Movie from './Components/Movie';
 
 function App() {
 	const [searchInput, setSearchInput] = useState('');
@@ -24,17 +25,12 @@ function App() {
 			setSearchResults(data.Search);
 		}
 	};
-	console.log(searchResults);
+
 	const showResults = searchResults?.map(
-		({ Poster, Title, Type, Year, imdbID }) =>
+		({ Poster, Title, imdbID }) =>
 			//filter bad results
 			Poster !== 'N/A' && (
-				<div className="movie-card" key={imdbID} id={imdbID} name={Title}>
-					<img src={Poster} alt={Title} />
-					<div className="card-info">
-						<h3>{Title}</h3>
-					</div>
-				</div>
+				<Movie key={imdbID} id={imdbID} poster={Poster} title={Title}></Movie>
 			)
 	);
 
