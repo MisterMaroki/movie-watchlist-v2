@@ -172,7 +172,7 @@ header * {
   max-width: 700px;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
+          justify-content: flex-start;
   gap: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -222,7 +222,7 @@ header * {
           align-items: center;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
+          justify-content: flex-start;
   gap: 0.5rem;
 }
 
