@@ -58,6 +58,16 @@ function App() {
 				/>
 			)
 	);
+	const showWatchlist = currentWatchlist?.map((item) => (
+		<Movie
+			key={item}
+			id={item}
+			addToWatchlist={addToWatchlist}
+			removeFromWatchlist={removeFromWatchlist}
+			isMovieInWatchlist={isMovieInWatchlist}
+			currentWatchlist={currentWatchlist}
+		/>
+	));
 
 	return (
 		<div className="App">
@@ -67,7 +77,9 @@ function App() {
 				toggleWatchlist={toggleWatchlist}
 			/>
 			<div className="movies-div">
-				{searchResults?.length >= 1 && showResults}
+				{showingWatchlist
+					? showWatchlist
+					: searchResults?.length >= 1 && showResults}
 			</div>
 		</div>
 	);
