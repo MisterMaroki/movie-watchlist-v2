@@ -114,6 +114,7 @@ header * {
   display: -ms-flexbox;
   display: flex;
   width: 70%;
+  max-width: 400px;
   background: #2e2e2f;
   position: absolute;
   bottom: -15px;
