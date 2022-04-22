@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import './css/App.css';
 import Header from './Components/Header';
 import Movie from './Components/Movie';
 function App() {
