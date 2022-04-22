@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import fmov from '../fmov.png';
-const Movie = ({ id, poster, title }) => {
+const Movie = ({ id }) => {
 	const [thisResult, setThisResult] = useState({
 		imdbID: '',
 		Title: '',
@@ -13,10 +13,7 @@ const Movie = ({ id, poster, title }) => {
 		Plot: '',
 		Genre: '',
 	});
-	function isWatchlist(e) {
-		console.log(e);
-	}
-	console.log(thisResult);
+
 	//fetch the rest of the data from the api in each movie instance using given id prop: runtime, rating,descrption etc...
 	useEffect(() => {
 		async function fetchMoreData(id) {
@@ -39,7 +36,7 @@ const Movie = ({ id, poster, title }) => {
 		thisResult.imdbRating !== 'N/A' && (
 			<div className="movie-card" id={id}>
 				<div className="img-container">
-					<img src={poster} alt={title} />
+					<img src={thisResult.Poster} alt={thisResult.Title} />
 				</div>
 				<div className="card-info">
 					<div className="card-title">
@@ -53,23 +50,27 @@ const Movie = ({ id, poster, title }) => {
 						<p>{thisResult.Runtime}</p>
 						<p>{thisResult.Genre}</p>
 						<button className="watchlist-btn" id={id}>
-							{isWatchlist ? (
+							{/* {isWatchlist ? (
 								<IndeterminateCheckBoxIcon />
 							) : (
 								<AddBoxIcon style={{ color: 'green' }} />
-							)}
+							)} */}
 							{/* <IndeterminateCheckBoxIcon /> */}
+							<AddBoxIcon />
 							Watchlist
 						</button>
 					</div>
 					<p className="desc">{thisResult.Plot}</p>
 					<button className="fmovies-btn">
+						{/* formatting the spaces in the title string to cooperate with fmovies url */}
 						<a
-							href={`https://fmoviesto.cc/search/${title.split(' ').join('-')}`}
+							href={`https://fmoviesto.cc/search/${thisResult.Title.split(
+								' '
+							).join('-')}`}
 							target="_blank"
 							rel="noreferrer"
 						>
-							<img src={fmov} alt="" />
+							<img src={fmov} alt="find this on fmovies" />
 						</a>
 					</button>
 				</div>

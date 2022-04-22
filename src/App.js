@@ -8,11 +8,8 @@ function App() {
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
 
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
-	console.log(showingWatchlist);
 	function handleSearch(event) {
 		event.preventDefault();
-		console.log(event.target.value);
-
 		fetchInitialSearchResults(event.target.value);
 	}
 
@@ -29,9 +26,7 @@ function App() {
 	const showResults = searchResults?.map(
 		({ Poster, Title, imdbID }) =>
 			//filter bad results
-			Poster !== 'N/A' && (
-				<Movie key={imdbID} id={imdbID} poster={Poster} title={Title}></Movie>
-			)
+			Poster !== 'N/A' && <Movie key={imdbID} id={imdbID} />
 	);
 
 	return (
