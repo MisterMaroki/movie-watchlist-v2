@@ -53,6 +53,7 @@ html {
       -ms-flex-align: center;
           align-items: center;
   padding-inline: 1rem;
+  padding-top: 1rem;
 }
 
 button {
@@ -166,7 +167,7 @@ header * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  max-width: 800px;
+  max-width: 700px;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
@@ -206,6 +207,7 @@ header * {
           justify-content: center;
   padding-inline: 1rem;
   text-align: left;
+  width: 100%;
 }
 
 .movie-card .card-info .card-title {

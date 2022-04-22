@@ -38,6 +38,7 @@ html {
 	width: 100vw;
 	align-items: center;
 	padding-inline: 1rem;
+	padding-top: 1rem;
 }
 button {
 	background: transparent;
@@ -124,13 +125,11 @@ header {
 /////MOVIE CARDS
 .movie-card {
 	display: flex;
-	max-width: 800px;
-
+	max-width: 700px;
 	justify-content: start;
 	gap: 1rem;
 	align-items: center;
 	width: calc(90%);
-
 	padding: 2rem 0;
 	border-bottom: 0.1mm solid rgba(245, 245, 245, 0.557);
 
@@ -150,6 +149,7 @@ header {
 		justify-content: center;
 		padding-inline: 1rem;
 		text-align: left;
+		width: 100%;
 		.card-title {
 			padding-block: 0.5rem;
 			display: flex;
