@@ -4,22 +4,19 @@ import Header from './Components/Header';
 import Movie from './Components/Movie';
 
 function App() {
-	const [searchInput, setSearchInput] = useState('');
-
 	const [searchResults, setSearchResults] = useState([]);
 
 	function handleSearch(event) {
 		event.preventDefault();
 		console.log(event.target.value);
 
-		setSearchInput(event?.target?.value);
-		fetchInitialSearchResults();
+		fetchInitialSearchResults(event.target.value);
 	}
 
-	const fetchInitialSearchResults = async () => {
-		if (searchInput !== undefined) {
+	const fetchInitialSearchResults = async (search) => {
+		if (search !== undefined) {
 			const res = await fetch(
-				`https://www.omdbapi.com/?apikey=3f3c26a6&s=${searchInput}&type=movie&page=1`
+				`https://www.omdbapi.com/?apikey=3f3c26a6&s=${search}&type=movie&page=1`
 			);
 			const data = await res.json();
 			setSearchResults(data.Search);
