@@ -104,10 +104,7 @@ header {
   height: 180px;
   width: 100vw;
   background-color: #000000f2;
-}
-
-header * {
-  z-index: 2;
+  z-index: 20;
 }
 
 .search-container {
