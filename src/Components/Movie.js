@@ -3,6 +3,7 @@ import StarIcon from '@mui/icons-material/Star';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import fmov from '../fmov.png';
+import { Button, IconButton } from '@mui/material';
 const Movie = ({
 	id,
 	addToWatchlist,
@@ -56,7 +57,8 @@ const Movie = ({
 					<div className="meta-container">
 						<p>{thisResult.Runtime}</p>
 						<p>{thisResult.Genre}</p>
-						<button
+						<Button
+							style={{ color: 'whitesmoke' }}
 							className="watchlist-btn"
 							id={id}
 							onClick={() => {
@@ -72,10 +74,10 @@ const Movie = ({
 							)}
 							{/* <AddBoxIcon /> */}
 							Watchlist
-						</button>
+						</Button>
 					</div>
 					<p className="desc">{thisResult.Plot}</p>
-					<button className="fmovies-btn">
+					<IconButton className="fmovies-btn">
 						{/* formatting the spaces in the title string to cooperate with fmovies url */}
 						<a
 							href={`https://fmoviesto.cc/search/${thisResult.Title.split(
@@ -86,7 +88,7 @@ const Movie = ({
 						>
 							<img src={fmov} alt="find this on fmovies" />
 						</a>
-					</button>
+					</IconButton>
 				</div>
 			</div>
 		)
