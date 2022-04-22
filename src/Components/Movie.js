@@ -70,7 +70,7 @@ const Movie = ({
 							{isMovieInWatchlist(thisResult.imdbID) ? (
 								<IndeterminateCheckBoxIcon />
 							) : (
-								<AddBoxIcon style={{ color: 'green' }} />
+								<AddBoxIcon />
 							)}
 							{/* <AddBoxIcon /> */}
 							Watchlist

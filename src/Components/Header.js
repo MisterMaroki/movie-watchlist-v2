@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
 const Header = ({ handleSearch, showingWatchlist, toggleWatchlist }) => {
 	return (
 		<header>
@@ -6,9 +7,13 @@ const Header = ({ handleSearch, showingWatchlist, toggleWatchlist }) => {
 				<h1 id="heading-top">
 					{!showingWatchlist ? 'Find your film' : 'Your Watchlist'}
 				</h1>
-				<button id="nav-link" onClick={toggleWatchlist}>
+				<Button
+					style={{ color: 'whitesmoke' }}
+					id="nav-link"
+					onClick={toggleWatchlist}
+				>
 					{showingWatchlist ? 'Find a film' : 'My Watchlist'}
-				</button>
+				</Button>
 			</div>
 			{!showingWatchlist && (
 				<div className="search-container" id="search-form">
