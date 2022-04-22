@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
-import { IconButton } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import fmov from '../fmov.png';
-const Movie = ({ id, addToWatchlist, isMovieInWatchlist }) => {
+const Movie = ({
+	id,
+	addToWatchlist,
+	isMovieInWatchlist,
+	removeFromWatchlist,
+	currentWatchlist,
+	updateStoredWatchlist,
+}) => {
 	const [thisResult, setThisResult] = useState({
 		imdbID: '',
 		Title: '',
@@ -30,6 +36,7 @@ const Movie = ({ id, addToWatchlist, isMovieInWatchlist }) => {
 		}
 		fetchMoreData(id);
 	}, [id]);
+
 	return (
 		//filter bad results
 		thisResult.Plot.length >= 10 &&
@@ -52,18 +59,18 @@ const Movie = ({ id, addToWatchlist, isMovieInWatchlist }) => {
 						<button
 							className="watchlist-btn"
 							id={id}
-							onClick={() =>
-								!isMovieInWatchlist(thisResult.imdbID) &&
-								addToWatchlist(thisResult.imdbID)
-							}
+							onClick={() => {
+								!isMovieInWatchlist(thisResult.imdbID)
+									? addToWatchlist(thisResult.imdbID)
+									: removeFromWatchlist(thisResult.imdbID);
+							}}
 						>
-							{/* {isWatchlist ? (
+							{isMovieInWatchlist(thisResult.imdbID) ? (
 								<IndeterminateCheckBoxIcon />
 							) : (
 								<AddBoxIcon style={{ color: 'green' }} />
-							)} */}
-							{/* <IndeterminateCheckBoxIcon /> */}
-							<AddBoxIcon />
+							)}
+							{/* <AddBoxIcon /> */}
 							Watchlist
 						</button>
 					</div>

@@ -1,22 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Movie from './Components/Movie';
-
 function App() {
 	const [searchResults, setSearchResults] = useState([]);
 	const [currentWatchlist, setCurrentWatchlist] = useState([]);
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
 
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
+
+	useEffect(() => {
+		const updateStoredWatchlist = () => {
+			localStorage.setItem('watchlist', currentWatchlist);
+		};
+		updateStoredWatchlist();
+	}, [currentWatchlist]);
+
 	const addToWatchlist = (id) => {
 		setCurrentWatchlist(currentWatchlist.concat(id));
 	};
 
-	localStorage.setItem('watchlist', currentWatchlist);
+	const removeFromWatchlist = async (id) => {
+		setCurrentWatchlist((prevState) => {
+			return prevState.filter((movie) => movie !== id);
+		});
+	};
 
 	const isMovieInWatchlist = (id) => {
-		console.log(currentWatchlist.includes(id));
 		return currentWatchlist.includes(id);
 	};
 
@@ -42,7 +52,9 @@ function App() {
 					key={imdbID}
 					id={imdbID}
 					addToWatchlist={addToWatchlist}
+					removeFromWatchlist={removeFromWatchlist}
 					isMovieInWatchlist={isMovieInWatchlist}
+					currentWatchlist={currentWatchlist}
 				/>
 			)
 	);
