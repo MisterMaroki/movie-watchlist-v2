@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import fmov from '../fmov.png';
-const Movie = ({ id }) => {
+const Movie = ({ id, addToWatchlist, isMovieInWatchlist }) => {
 	const [thisResult, setThisResult] = useState({
 		imdbID: '',
 		Title: '',
@@ -49,7 +49,14 @@ const Movie = ({ id }) => {
 					<div className="meta-container">
 						<p>{thisResult.Runtime}</p>
 						<p>{thisResult.Genre}</p>
-						<button className="watchlist-btn" id={id}>
+						<button
+							className="watchlist-btn"
+							id={id}
+							onClick={() =>
+								!isMovieInWatchlist(thisResult.imdbID) &&
+								addToWatchlist(thisResult.imdbID)
+							}
+						>
 							{/* {isWatchlist ? (
 								<IndeterminateCheckBoxIcon />
 							) : (

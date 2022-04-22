@@ -5,14 +5,25 @@ import Movie from './Components/Movie';
 
 function App() {
 	const [searchResults, setSearchResults] = useState([]);
+	const [currentWatchlist, setCurrentWatchlist] = useState([]);
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
 
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
+	const addToWatchlist = (id) => {
+		setCurrentWatchlist(currentWatchlist.concat(id));
+	};
+
+	localStorage.setItem('watchlist', currentWatchlist);
+
+	const isMovieInWatchlist = (id) => {
+		console.log(currentWatchlist.includes(id));
+		return currentWatchlist.includes(id);
+	};
+
 	function handleSearch(event) {
 		event.preventDefault();
 		fetchInitialSearchResults(event.target.value);
 	}
-
 	const fetchInitialSearchResults = async (search) => {
 		if (search !== undefined) {
 			const res = await fetch(
@@ -24,9 +35,16 @@ function App() {
 	};
 
 	const showResults = searchResults?.map(
-		({ Poster, Title, imdbID }) =>
+		({ Poster, imdbID }) =>
 			//filter bad results
-			Poster !== 'N/A' && <Movie key={imdbID} id={imdbID} />
+			Poster !== 'N/A' && (
+				<Movie
+					key={imdbID}
+					id={imdbID}
+					addToWatchlist={addToWatchlist}
+					isMovieInWatchlist={isMovieInWatchlist}
+				/>
+			)
 	);
 
 	return (
