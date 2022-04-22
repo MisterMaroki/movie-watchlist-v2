@@ -179,6 +179,15 @@ header {
   border-bottom: 0.1mm solid rgba(245, 245, 245, 0.557);
 }
 
+@media screen and (max-width: 668px) {
+  .movie-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .movie-card .img-container {
   height: 100%;
   width: -webkit-fit-content;

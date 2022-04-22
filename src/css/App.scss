@@ -132,6 +132,9 @@ header {
 	width: calc(90%);
 	padding: 2rem 0;
 	border-bottom: 0.1mm solid rgba(245, 245, 245, 0.557);
+	@media screen and (max-width: 668px) {
+		flex-direction: column;
+	}
 
 	.img-container {
 		height: 100%;
