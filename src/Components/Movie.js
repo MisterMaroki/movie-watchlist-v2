@@ -17,7 +17,7 @@ const Movie = ({ id, poster, title }) => {
 		console.log(e);
 	}
 	console.log(thisResult);
-	//fetch the rest of the data from the api in each movie instance: runtime, rating,descrption etc...
+	//fetch the rest of the data from the api in each movie instance using given id prop: runtime, rating,descrption etc...
 	useEffect(() => {
 		async function fetchMoreData(id) {
 			try {
@@ -78,34 +78,3 @@ const Movie = ({ id, poster, title }) => {
 	);
 };
 export default Movie;
-
-// <div id="img-container" class=${JSON.stringify(
-// 		obj.title
-// 	)} style="background-image: url('${obj.imageURL}')"></div>
-// 	<div id="info-container">
-// 		<div id="title-container">
-// 			<h3 id="movie-title">${obj.title}</h3>
-// 			<i class="fa-solid fa-star"></i>
-// 			<p id="movie-rating">${obj.rated}1</p>
-// 		</div>
-// 		<div id="meta-container">
-// 			<p id="movie-runtime">${obj.runtime}</p>
-// 			<p id="movie-genres">${obj.genre}</p>
-// 			<button id="add-to-watchlist-btn-${i}" onClick="editWatchlistInSearch(${i})" style='${
-// 		localStorage.getItem(obj.id)
-// 			? 'background-color: #ffffff16'
-// 			: 'background-color: #ffffff00'
-// 	}'>
-// 			<i id="plus-btn-${i}" class='${
-// 		localStorage.getItem(obj.id)
-// 			? 'fa-solid fa-circle-minus'
-// 			: 'fa-solid fa-circle-plus'
-// 	}'></i>
-
-// 				<p>Watchlist</p>
-// 			</button>
-// 		</div>
-// 		<div id="description-container">
-// 	<p>${obj.desc}</p>
-// 		</div>
-// 	</div>
