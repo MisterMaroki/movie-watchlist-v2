@@ -24,23 +24,26 @@ function App() {
 			setSearchResults(data.Search);
 		}
 	};
+	console.log(searchResults);
+	const showResults = searchResults?.map(
+		({ Poster, Title, Type, Year, imdbID }) =>
+			//filter bad results
+			Poster !== 'N/A' && (
+				<div className="movie-card" key={imdbID} id={imdbID} name={Title}>
+					<img src={Poster} alt={Title} />
+					<div className="card-info">
+						<h3>{Title}</h3>
+					</div>
+				</div>
+			)
+	);
 
-	const showResults = searchResults?.map((result) => (
-		<div className="movie-card">{JSON.stringify(result)}</div>
-	));
-	// const showResults = searchResults?.map((result) => {
-	// 	console.log(result);
-	// 	return searchResults.map((result) => (
-	// 		<div className="movie-card">{JSON.stringify(result)}</div>
-	// 	));
-	// });
 	return (
 		<div className="App">
 			<Header handleSearch={handleSearch} />
 			<div className="movies-div">
 				{searchResults?.length >= 1 && showResults}
 			</div>
-			;
 		</div>
 	);
 }
