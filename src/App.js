@@ -4,23 +4,23 @@ import Header from './Components/Header';
 import Movie from './Components/Movie';
 function App() {
 	const [searchResults, setSearchResults] = useState([]);
-	const [currentWatchlist, setCurrentWatchlist] = useState([
-		localStorage.getItem('watchlist'),
-	]);
+	const [currentWatchlist, setCurrentWatchlist] = useState(
+		localStorage.getItem('watchlist')?.split(',')
+	);
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
-	console.log(currentWatchlist);
+	// console.log(currentWatchlist);
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
 
 	useEffect(() => {
 		const updateStoredWatchlist = () => {
-			currentWatchlist?.length >= 0 &&
-				localStorage.setItem('watchlist', [currentWatchlist]);
+			const hi = currentWatchlist?.toString().replace('undefined', '');
+			currentWatchlist?.length !== -1 && localStorage.setItem('watchlist', hi);
 		};
 		updateStoredWatchlist();
-	}, [currentWatchlist]);
+	}, [currentWatchlist, setCurrentWatchlist]);
 
 	const addToWatchlist = (id) => {
-		setCurrentWatchlist(currentWatchlist.concat([id]));
+		setCurrentWatchlist(currentWatchlist.concat(id));
 	};
 
 	const removeFromWatchlist = async (id) => {
@@ -61,20 +61,25 @@ function App() {
 				/>
 			)
 	);
-	const showWatchlist = currentWatchlist?.map((item) => (
-		<Movie
-			key={item}
-			id={item}
-			addToWatchlist={addToWatchlist}
-			removeFromWatchlist={removeFromWatchlist}
-			isMovieInWatchlist={isMovieInWatchlist}
-			currentWatchlist={currentWatchlist}
-		/>
-	));
-	// const showWatchlist = localStorage.getItem('watchlist');
+	const showWatchlist = currentWatchlist?.map((item) => {
+		console.log(item);
+		return (
+			item && (
+				<Movie
+					key={item}
+					id={item}
+					addToWatchlist={addToWatchlist}
+					removeFromWatchlist={removeFromWatchlist}
+					isMovieInWatchlist={isMovieInWatchlist}
+					currentWatchlist={currentWatchlist}
+				/>
+			)
+		);
+	});
+	// const showWatchlist = currentWatchlist;
 	// console.log(
 	// 	'🚀 ~ file: App.js ~ line 77 ~ App ~ showWatchlist',
-	// 	showWatchlist.split(',')
+	// 	showWatchlist
 	// );
 	return (
 		<div className="App">
