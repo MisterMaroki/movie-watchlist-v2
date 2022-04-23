@@ -63,13 +63,14 @@ const Movie = ({
 							onClick={() => {
 								editWatchlist(thisResult.imdbID);
 							}}
+							startIcon={
+								currentWatchlist?.includes(thisResult.imdbID) ? (
+									<IndeterminateCheckBoxIcon />
+								) : (
+									<AddBoxIcon />
+								)
+							}
 						>
-							{currentWatchlist?.includes(thisResult.imdbID) ? (
-								<IndeterminateCheckBoxIcon />
-							) : (
-								<AddBoxIcon />
-							)}
-							{/* <AddBoxIcon /> */}
 							Watchlist
 						</Button>
 					</div>
