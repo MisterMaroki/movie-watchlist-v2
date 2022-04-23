@@ -40,8 +40,8 @@ const Movie = ({
 
 	return (
 		//filter bad results
-		thisResult.Plot.length >= 10 &&
-		thisResult.imdbRating !== 'N/A' && (
+		thisResult?.Plot?.length >= 10 &&
+		thisResult?.imdbRating !== 'N/A' && (
 			<div className="movie-card" id={id}>
 				<div className="img-container">
 					<img src={thisResult.Poster} alt={thisResult.Title} />

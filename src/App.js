@@ -4,20 +4,23 @@ import Header from './Components/Header';
 import Movie from './Components/Movie';
 function App() {
 	const [searchResults, setSearchResults] = useState([]);
-	const [currentWatchlist, setCurrentWatchlist] = useState([]);
+	const [currentWatchlist, setCurrentWatchlist] = useState([
+		localStorage.getItem('watchlist'),
+	]);
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
-
+	console.log(currentWatchlist);
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
 
 	useEffect(() => {
 		const updateStoredWatchlist = () => {
-			localStorage.setItem('watchlist', currentWatchlist);
+			currentWatchlist?.length >= 0 &&
+				localStorage.setItem('watchlist', [currentWatchlist]);
 		};
 		updateStoredWatchlist();
 	}, [currentWatchlist]);
 
 	const addToWatchlist = (id) => {
-		setCurrentWatchlist(currentWatchlist.concat(id));
+		setCurrentWatchlist(currentWatchlist.concat([id]));
 	};
 
 	const removeFromWatchlist = async (id) => {
@@ -27,7 +30,7 @@ function App() {
 	};
 
 	const isMovieInWatchlist = (id) => {
-		return currentWatchlist.includes(id);
+		return currentWatchlist?.includes(id);
 	};
 
 	function handleSearch(event) {
@@ -68,7 +71,11 @@ function App() {
 			currentWatchlist={currentWatchlist}
 		/>
 	));
-
+	// const showWatchlist = localStorage.getItem('watchlist');
+	// console.log(
+	// 	'🚀 ~ file: App.js ~ line 77 ~ App ~ showWatchlist',
+	// 	showWatchlist.split(',')
+	// );
 	return (
 		<div className="App">
 			<Header
