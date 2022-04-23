@@ -17,7 +17,6 @@ function App() {
 	useEffect(() => {
 		const updateStoredWatchlist = () => {
 			const hi = currentWatchlist?.toString().replace('undefined', '');
-			console.log(hi);
 			localStorage.setItem('watchlist', hi);
 		};
 		updateStoredWatchlist();
@@ -88,6 +87,7 @@ function App() {
 			)
 		);
 	});
+
 	const showSearchPrompt = (
 		<div style={{ paddingTop: '30vh' }}>
 			<SearchIcon />
