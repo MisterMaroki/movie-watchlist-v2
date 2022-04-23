@@ -14,13 +14,14 @@ function App() {
 	useEffect(() => {
 		const updateStoredWatchlist = () => {
 			const hi = currentWatchlist?.toString().replace('undefined', '');
-			currentWatchlist?.length !== -1 && localStorage.setItem('watchlist', hi);
+			console.log(hi);
+			localStorage.setItem('watchlist', hi);
 		};
 		updateStoredWatchlist();
 	}, [currentWatchlist, setCurrentWatchlist]);
 
 	const addToWatchlist = (id) => {
-		setCurrentWatchlist(currentWatchlist.concat(id));
+		setCurrentWatchlist(currentWatchlist?.concat(id));
 	};
 
 	const removeFromWatchlist = async (id) => {
@@ -62,7 +63,11 @@ function App() {
 			)
 	);
 	const showWatchlist = currentWatchlist?.map((item) => {
-		console.log(item);
+		console.log(item.toString());
+		item.toString() === 'undefined' && window.location.reload(false);
+
+		const hi = currentWatchlist?.toString().replace('undefined', '');
+		localStorage.setItem('watchlist', hi);
 		return (
 			item && (
 				<Movie

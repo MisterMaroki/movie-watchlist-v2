@@ -39,6 +39,7 @@ const Movie = ({
 	}, [id]);
 
 	return (
+		thisResult.imdbID !== 'tt9376612' &&
 		//filter bad results
 		thisResult?.Plot?.length >= 10 &&
 		thisResult?.imdbRating !== 'N/A' && (
