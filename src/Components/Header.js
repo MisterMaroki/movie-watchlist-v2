@@ -1,19 +1,33 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
-const Header = ({ handleSearch, showingWatchlist, toggleWatchlist }) => {
+import Badge, { BadgeProps } from '@mui/material/Badge';
+
+const Header = ({
+	handleSearch,
+	showingWatchlist,
+	toggleWatchlist,
+	currentWatchlist,
+}) => {
+	const watchlistLength = currentWatchlist?.length - 1;
+
 	return (
 		<header>
 			<div className="flex">
 				<h1 id="heading-top">
 					{!showingWatchlist ? 'Find your film' : 'Your Watchlist'}
 				</h1>
-				<Button
-					style={{ color: 'whitesmoke' }}
-					id="nav-link"
-					onClick={toggleWatchlist}
+				<Badge
+					badgeContent={watchlistLength > 0 && watchlistLength}
+					color="secondary"
 				>
-					{showingWatchlist ? 'Find a film' : 'My Watchlist'}
-				</Button>
+					<Button
+						style={{ color: 'whitesmoke' }}
+						id="nav-link"
+						onClick={toggleWatchlist}
+					>
+						{showingWatchlist ? 'Find a film' : 'My Watchlist'}
+					</Button>
+				</Badge>
 			</div>
 			{!showingWatchlist && (
 				<div className="search-container" id="search-form">

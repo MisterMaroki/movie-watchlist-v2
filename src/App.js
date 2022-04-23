@@ -95,6 +95,7 @@ function App() {
 				handleSearch={handleSearch}
 				showingWatchlist={showingWatchlist}
 				toggleWatchlist={toggleWatchlist}
+				currentWatchlist={currentWatchlist}
 			/>
 			<div className="movies-div">
 				{showingWatchlist
