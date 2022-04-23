@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
-import Badge, { BadgeProps } from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 
 const Header = ({
 	handleSearch,
@@ -8,7 +8,8 @@ const Header = ({
 	toggleWatchlist,
 	currentWatchlist,
 }) => {
-	const watchlistLength = currentWatchlist?.length - 1;
+	const watchlistLength =
+		localStorage.getItem('watchlist')?.split(',').length - 1;
 
 	return (
 		<header>
