@@ -11,7 +11,6 @@ function App() {
 		localStorage.getItem('watchlist')?.split(',')
 	);
 	const [showingWatchlist, setShowingWatchlist] = useState(false);
-	// console.log(currentWatchlist);
 	const toggleWatchlist = () => setShowingWatchlist(!showingWatchlist);
 
 	useEffect(() => {
@@ -20,21 +19,7 @@ function App() {
 			localStorage.setItem('watchlist', hi);
 		};
 		updateStoredWatchlist();
-	}, [currentWatchlist, setCurrentWatchlist]);
-
-	// const addToWatchlist = (id) => {
-	// 	setCurrentWatchlist(currentWatchlist?.concat(id));
-	// };
-
-	// const removeFromWatchlist = async (id) => {
-	// 	setCurrentWatchlist((prevState) => {
-	// 		return prevState.filter((movie) => movie !== id);
-	// 	});
-	// };
-
-	// const isMovieInWatchlist = (id) => {
-	// 	return currentWatchlist?.includes(id);
-	// };
+	}, [currentWatchlist]);
 
 	const editWatchlist = (id) => {
 		currentWatchlist?.includes(id)
@@ -103,11 +88,7 @@ function App() {
 			</button>
 		</div>
 	);
-	// const showWatchlist = currentWatchlist;
-	// console.log(
-	// 	'🚀 ~ file: App.js ~ line 77 ~ App ~ showWatchlist',
-	// 	showWatchlist
-	// );
+
 	return (
 		<div className="App">
 			<Header

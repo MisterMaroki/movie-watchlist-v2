@@ -6,10 +6,9 @@ import fmov from '../fmov.png';
 import { Button, IconButton } from '@mui/material';
 const Movie = ({
 	id,
-	isMovieInWatchlist,
+
 	editWatchlist,
 	currentWatchlist,
-	updateStoredWatchlist,
 }) => {
 	const [thisResult, setThisResult] = useState({
 		imdbID: '',
