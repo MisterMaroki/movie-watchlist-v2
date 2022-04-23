@@ -6,9 +6,8 @@ import fmov from '../fmov.png';
 import { Button, IconButton } from '@mui/material';
 const Movie = ({
 	id,
-	addToWatchlist,
 	isMovieInWatchlist,
-	removeFromWatchlist,
+	editWatchlist,
 	currentWatchlist,
 	updateStoredWatchlist,
 }) => {
@@ -63,12 +62,10 @@ const Movie = ({
 							className="watchlist-btn"
 							id={id}
 							onClick={() => {
-								!isMovieInWatchlist(thisResult.imdbID)
-									? addToWatchlist(thisResult.imdbID)
-									: removeFromWatchlist(thisResult.imdbID);
+								editWatchlist(thisResult.imdbID);
 							}}
 						>
-							{isMovieInWatchlist(thisResult.imdbID) ? (
+							{currentWatchlist?.includes(thisResult.imdbID) ? (
 								<IndeterminateCheckBoxIcon />
 							) : (
 								<AddBoxIcon />

@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import './css/App.css';
 import Header from './Components/Header';
 import Movie from './Components/Movie';
+import SearchIcon from '@mui/icons-material/Search';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+
 function App() {
 	const [searchResults, setSearchResults] = useState([]);
 	const [currentWatchlist, setCurrentWatchlist] = useState(
@@ -20,18 +23,26 @@ function App() {
 		updateStoredWatchlist();
 	}, [currentWatchlist, setCurrentWatchlist]);
 
-	const addToWatchlist = (id) => {
-		setCurrentWatchlist(currentWatchlist?.concat(id));
-	};
+	// const addToWatchlist = (id) => {
+	// 	setCurrentWatchlist(currentWatchlist?.concat(id));
+	// };
 
-	const removeFromWatchlist = async (id) => {
-		setCurrentWatchlist((prevState) => {
-			return prevState.filter((movie) => movie !== id);
-		});
-	};
+	// const removeFromWatchlist = async (id) => {
+	// 	setCurrentWatchlist((prevState) => {
+	// 		return prevState.filter((movie) => movie !== id);
+	// 	});
+	// };
 
-	const isMovieInWatchlist = (id) => {
-		return currentWatchlist?.includes(id);
+	// const isMovieInWatchlist = (id) => {
+	// 	return currentWatchlist?.includes(id);
+	// };
+
+	const editWatchlist = (id) => {
+		currentWatchlist?.includes(id)
+			? setCurrentWatchlist((prevState) => {
+					return prevState.filter((movie) => movie !== id);
+			  })
+			: setCurrentWatchlist(currentWatchlist?.concat(id));
 	};
 
 	function handleSearch(event) {
@@ -55,15 +66,13 @@ function App() {
 				<Movie
 					key={imdbID}
 					id={imdbID}
-					addToWatchlist={addToWatchlist}
-					removeFromWatchlist={removeFromWatchlist}
-					isMovieInWatchlist={isMovieInWatchlist}
+					editWatchlist={editWatchlist}
 					currentWatchlist={currentWatchlist}
 				/>
 			)
 	);
 	const showWatchlist = currentWatchlist?.map((item) => {
-		console.log(item.toString());
+		//avoid having the first item in localstorage being undefined. this reloads the page to make sure the watchlist is updated to be either empty or not empty
 		item.toString() === 'undefined' && window.location.reload(false);
 
 		const hi = currentWatchlist?.toString().replace('undefined', '');
@@ -73,14 +82,27 @@ function App() {
 				<Movie
 					key={item}
 					id={item}
-					addToWatchlist={addToWatchlist}
-					removeFromWatchlist={removeFromWatchlist}
-					isMovieInWatchlist={isMovieInWatchlist}
+					editWatchlist={editWatchlist}
 					currentWatchlist={currentWatchlist}
 				/>
 			)
 		);
 	});
+	const showSearchPrompt = (
+		<div style={{ paddingTop: '30vh' }}>
+			<SearchIcon />
+			Start Exploring
+		</div>
+	);
+	const showEmptyWatchlistPrompt = (
+		<div style={{ paddingTop: '30vh' }}>
+			<LiveTvIcon style={{ display: 'block' }} />
+			Find some movies and save them here
+			<button style={{ display: 'block' }} onClick={toggleWatchlist}>
+				Search
+			</button>
+		</div>
+	);
 	// const showWatchlist = currentWatchlist;
 	// console.log(
 	// 	'🚀 ~ file: App.js ~ line 77 ~ App ~ showWatchlist',
@@ -95,8 +117,13 @@ function App() {
 			/>
 			<div className="movies-div">
 				{showingWatchlist
-					? showWatchlist
-					: searchResults?.length >= 1 && showResults}
+					? localStorage.getItem('watchlist') !== 'undefined' &&
+					  localStorage.getItem('watchlist') !== ''
+						? showWatchlist
+						: showEmptyWatchlistPrompt
+					: searchResults?.length >= 1
+					? showResults
+					: showSearchPrompt}
 			</div>
 		</div>
 	);
