@@ -8,8 +8,7 @@ const Header = ({
 	toggleWatchlist,
 	currentWatchlist,
 }) => {
-	const watchlistLength =
-		localStorage.getItem('watchlist')?.split(',').length - 1;
+	const watchlistLength = currentWatchlist.length - 1;
 
 	return (
 		<header>
